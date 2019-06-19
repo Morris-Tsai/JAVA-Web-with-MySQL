@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>User Management Web Application</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+<servlet>
+    <servlet-name>myCaptcha</servlet-name>
+    <!-- jar中的 KaptchaServlet的路径-->
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    <init-param>
+<param-name>kaptcha.border</param-name>
+<param-value>yes</param-value>
+</init-param>
+
+        <!-- 字體顏色 -->
+<init-param>
+<param-name>kaptcha.textproducer.font.color</param-name>
+<param-value>black</param-value>
+</init-param>
+        <!-- 驗證碼與驗證碼的間隙 -->
+<init-param>
+<param-name>kaptcha.textproducer.char.space</param-name>
+<param-value>5</param-value>
+</init-param>
+
+<!-- 背景顏色開始點 -->
+<init-param>
+<param-name>kaptcha.background.clear.from</param-name>
+<param-value>100,150,250</param-value>
+</init-param>
+
+<!-- 背景顏色結束點 -->
+<init-param>
+<param-name>kaptcha.background.clear.to</param-name>
+<param-value>250,150,100</param-value>
+</init-param>
+
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>myCaptcha</servlet-name>
+    <!-- 对于index.jsp中img的src -->
+    <url-pattern>/imageKaptcha</url-pattern>
+</servlet-mapping>
+
+<welcome-file-list>
+<welcome-file>KaptchaExample.jsp</welcome-file>
+</welcome-file-list>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/Error.jsp</location>
+  </error-page>
+</web-app>
